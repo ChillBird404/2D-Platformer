@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -6,15 +7,13 @@ public class UI_MoneyDisplay : MonoBehaviour
     public CoinComponent Coin;
     public TextMeshProUGUI textComponent;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Awake()
     {
-        Coin = GetComponent<CoinComponent>();
+        Coin.CoinAmountChanged += CoinComp_CoinAmountChanged;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void CoinComp_CoinAmountChanged(float ncurrentPoints, float amountChanged)
     {
-        
+        textComponent.text = ncurrentPoints.ToString();
     }
 }
