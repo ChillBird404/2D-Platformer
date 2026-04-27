@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HealthComponent : MonoBehaviour
 {
@@ -32,6 +33,10 @@ public class HealthComponent : MonoBehaviour
             OnHealthChanged?.Invoke(currentHealth, amount);
             invincibility = true;
             StartCoroutine(ResetInvincibility(3));
+        }
+        if(currentHealth <= 0)
+        {
+            SceneManager.LoadScene("EndGameScene");
         }
 
         if (canReciveDamage)
@@ -70,3 +75,5 @@ public class HealthComponent : MonoBehaviour
         //Debug.Log("Reset");
     }
 }
+
+    
