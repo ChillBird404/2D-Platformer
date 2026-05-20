@@ -16,14 +16,31 @@ public class PlayerMotor : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private bool _canJump = true;
     private bool _canDash = true;
+    private Animator _animator;
+    private float _initScale; 
+
+    public int maxJump = 2;
+    private int currentJumps;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
+        _initScale = transform.localScale.x;
     }
     // Update is called once per frame
     private void FixedUpdate()
     {
+        //Check if moving right
+        if(direction.x > 0)
+        {
+            transform.localScale = new Vector3(_initScale, transform.localScale.y, transform.localScale.z);
+        }
+        else if (direction.x <0)
+        {
+            transform.localScale = new Vector3(-_initScale, transform.localScale.y, transform.localScale.z);
+        }
         MovePlayer();
         LimitMaxSpeed();
     }
@@ -51,6 +68,7 @@ public class PlayerMotor : MonoBehaviour
         if (direction.x != 0)
         {
             _rigidbody2D.AddForce(new Vector2(direction.x * acceleration, 0));
+            _animator.SetBool("IsMoving", true);
         }
         //if not accelerating start slowing down
         else if (_rigidbody2D.linearVelocityX != 0)
@@ -59,12 +77,17 @@ public class PlayerMotor : MonoBehaviour
             if (_rigidbody2D.linearVelocityX < stoppingPoint && _rigidbody2D.linearVelocityX > -stoppingPoint)
             {
                 _rigidbody2D.linearVelocity = new Vector2(0.0f, _rigidbody2D.linearVelocityY);
+                _animator.SetBool("IsMoving", false);
             }
             //add stopping force
             else
             {
                 _rigidbody2D.AddForce(new Vector2(-_rigidbody2D.linearVelocityX * stoppingForce, 0));
             }
+        }
+        if(direction.x == 0)
+        {
+            _animator.SetBool("IsMoving", false);
         }
     }
 
@@ -78,10 +101,15 @@ public class PlayerMotor : MonoBehaviour
         if (_canJump)
         {
             _rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            _canJump = false;
+            currentJumps++;
+            if(currentJumps >= maxJump)
+            {
+                _canJump = false;
+                currentJumps = 0;
+            }
         }
     }
-
+    
     private void OnDash()
     {
         //Debug.Log("Dashing");
