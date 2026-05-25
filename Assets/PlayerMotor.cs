@@ -32,6 +32,7 @@ public class PlayerMotor : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
+        _animator.SetFloat("SpeedY", _rigidbody2D.linearVelocityY);
         //Check if moving right
         if(direction.x > 0)
         {
@@ -101,9 +102,11 @@ public class PlayerMotor : MonoBehaviour
         if (_canJump)
         {
             _rigidbody2D.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            _animator.SetBool("IsJumping", true);
             currentJumps++;
             if(currentJumps >= maxJump)
             {
+                _animator.SetTrigger("DoubleJump");
                 _canJump = false;
                 currentJumps = 0;
             }
@@ -138,6 +141,7 @@ public class PlayerMotor : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         _canJump = true;
+        currentJumps = 0;
     }
 
     private void OnHealthChanged(int oldHealth, int amountChanged, Vector3 origin)

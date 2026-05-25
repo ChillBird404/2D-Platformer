@@ -2176,6 +2176,7 @@ GameObject:
   - component: {fileID: 1048695806}
   - component: {fileID: 1048695808}
   - component: {fileID: 1048695809}
+  - component: {fileID: 1048695810}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2201,6 +2202,8 @@ MonoBehaviour:
   stoppingPoint: 0.1
   jumpForce: 5
   enemyHitForce: 50
+  dashForce: 10
+  maxJump: 2
 --- !u!114 &1048695803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2296,7 +2299,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -10.35, y: -0.63, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2345,7 +2348,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.28, y: 0.28}
   m_EdgeRadius: 0
 --- !u!50 &1048695807
 Rigidbody2D:
@@ -2403,6 +2406,28 @@ MonoBehaviour:
   maxcoin: 10
   currentcoin: 0
   points: 0
+--- !u!95 &1048695810
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048695801}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 35bbdf40482666a4388122f6ad5c6fef, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1221200599
 GameObject:
   m_ObjectHideFlags: 0
@@ -2548,6 +2573,7 @@ GameObject:
   - component: {fileID: 1264647886}
   - component: {fileID: 1264647888}
   - component: {fileID: 1264647887}
+  - component: {fileID: 1264647889}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Untagged
@@ -4236,6 +4262,28 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!95 &1264647889
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264647885}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1302501571
 GameObject:
   m_ObjectHideFlags: 0
