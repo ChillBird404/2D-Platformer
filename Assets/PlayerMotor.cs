@@ -17,7 +17,7 @@ public class PlayerMotor : MonoBehaviour
     private bool _canJump = true;
     private bool _canDash = true;
     private Animator _animator;
-    private float _initScale; 
+    public float _initScale; 
 
     public int maxJump = 2;
     private int currentJumps;

@@ -1049,7 +1049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a5e3728cebd6be439077bc7a6b8c004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 2
 --- !u!60 &876920811
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -4982,6 +4982,10 @@ PrefabInstance:
     - target: {fileID: 1387340739276932122, guid: 7136dd23fd5e6a148b1a3e22c30cc0c2, type: 3}
       propertyPath: m_Name
       value: Spike (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1555770149942349820, guid: 7136dd23fd5e6a148b1a3e22c30cc0c2, type: 3}
+      propertyPath: damage
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3939621314314385994, guid: 7136dd23fd5e6a148b1a3e22c30cc0c2, type: 3}
       propertyPath: m_LocalPosition.x

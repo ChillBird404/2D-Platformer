@@ -3,13 +3,10 @@ using UnityEngine;
 public class PowerUp : MonoBehaviour
 {
 
-    public float multiplayer = 2f;
-    public float ScaleMode;
-    public float PlayerScale = 5;
-    public float shrink = -2;
-    //public float change playerScale = 2;
-    private bool powerUp;
-   
+    public Vector3 scaleMultiplier = new Vector3(1.5f, 1.5f, 1f);
+
+
+    //private bool PowerUp() //=> ShrinkPlayer = -2;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -18,14 +15,28 @@ public class PowerUp : MonoBehaviour
             PlayerScale Player = collision.GetComponent<PlayerScale>();
             if (Player != null)
             {
-                Player.Grow(multiplayer * -2);
-                //Player.Shrink(PlayerScale * -2);
+                Player.scaleMultiplier = scaleMultiplier;
+                Player.ShrinkPlayer();  
             }
-            powerUp = true;
         }
 
         //collision.GetComponent<powerUpComponent>().AddPoints(powerUp = );
         Destroy(gameObject);
+
+
+        //if (collision.CompareTag("PowerUp"))
+        {
+            //PlayerScale PowerUp = collision.GetComponent<PlayerScale>();
+            //if (PowerUp != null)
+            {
+                //Player.Grow(multiplayer * -2);
+                //Player.Shrink(PlayerScale * -2);
+                //PowerUp.changePlayerScale = -2;
+            }
+            //powerUp = true;
+        }
     }
+
+ 
 }
 
